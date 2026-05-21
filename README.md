@@ -39,7 +39,6 @@
 - 提供 6 种 PSM 识别模式可选（PSM 3/4/6/7/8/11）
 - 图像预处理：2 倍放大 + 灰度化，提升识别准确率
 - 识别结果弹出独立窗口，可拖选复制
-- 零安装模式：将 Tesseract 放入程序同目录 `ocr/` 即可使用
 
 ### 其他
 
@@ -50,11 +49,29 @@
 - 撤销：撤销最近一次标注操作
 - 右键菜单：提供标注操作的快捷入口
 
-## 使用方式
+## 下载与使用
 
-### 启动
+### 快速开始
 
-双击 `截图工具.exe`，程序将在系统托盘区驻留图标。
+1. 前往 [Releases](https://github.com/Adminicoder/screenshot_for_win7/releases) 页面下载以下两个文件：
+   - `截图工具.exe` -- 主程序
+   - `ocr.zip` -- OCR 引擎文件（可选，仅文字识别功能需要）
+2. 将两个文件放在**同一个文件夹**中
+3. 解压 `ocr.zip`，得到 `ocr/` 文件夹（确保与 `截图工具.exe` 同级）
+4. 双击 `截图工具.exe` 启动程序
+
+解压后的目录结构：
+
+```
+your-folder/
+  截图工具.exe
+  ocr/
+    tesseract.exe
+    tessdata/
+      chi_sim.traineddata
+```
+
+> 如果不需要 OCR 功能，可以不下载 `ocr.zip`，截图和标注功能不受影响。未配置 OCR 时，文字识别按钮点击后会提示未安装。
 
 ### 快捷键
 
@@ -79,10 +96,11 @@
 |------|------|
 | 操作系统 | Windows 7 及以上（32/64 位均支持） |
 | 运行时 | 无需额外安装，.NET Framework 4.0 已内置于系统 |
+| OCR | 需下载 Tesseract 4.x（Win7 必须使用 4.x，5.x 不支持 Win7） |
 
-## 编译
+## 从源码编译
 
-如需从源码编译，需确保系统已安装 .NET Framework 4.0 SDK：
+需确保系统已安装 .NET Framework 4.0 SDK：
 
 ```batch
 C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe ^
@@ -92,26 +110,6 @@ C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe ^
 ```
 
 或直接执行项目目录下的 `build.bat`。
-
-## OCR 配置
-
-如需文字识别功能，按以下步骤配置：
-
-1. 下载 Tesseract OCR（Windows 7 请使用 4.x 版本，5.x 不支持 Win7）
-2. 将 `tesseract.exe` 放入程序目录下的 `ocr/` 文件夹
-3. 将中文语言数据文件 `chi_sim.traineddata` 放入 `ocr/tessdata/` 文件夹
-
-完成后目录结构应为：
-
-```
-截图工具.exe
-ocr/
-  tesseract.exe
-  tessdata/
-    chi_sim.traineddata
-```
-
-若未配置 OCR，截图功能不受影响，仅文字识别按钮点击时提示未安装。
 
 ## 技术说明
 
@@ -129,8 +127,6 @@ screenshot-tool-cs/
   ScreenshotTool.cs    # 源代码
   build.bat            # 编译脚本
   截图.ico             # 程序图标
-  截图工具_v5p.exe     # 编译产物
-  ocrX/                # OCR 相关文件（需自行下载）
 ```
 
 ## 许可证
