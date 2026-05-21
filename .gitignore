@@ -1,0 +1,5 @@
+*.exe
+*.zip
+ocr/
+ocrX/
+hotkey.cfg
